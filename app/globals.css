@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.weatherforecast {
+  margin-top: 50px;
+  & > div {
+    background: linear-gradient(45deg,#a2dff5, #ededed);
+  }
+  svg {
+    width: 100px;
+    height: 100px;
+    stroke: #fff;
+  }
+}
