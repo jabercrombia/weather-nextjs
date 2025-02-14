@@ -1,7 +1,7 @@
 "use client"
 
 
-import { Cloud, CloudRain, Sun } from 'lucide-react';
+import { Cloud, CloudRain, Sun, SnowflakeIcon } from 'lucide-react';
 
 
 interface props {
@@ -87,9 +87,9 @@ export default function WeatherForecast({ temperature }: props) {
   return (
     <div className="grid grid-cols w-1/2 mx-auto weatherforecast drop-shadow-md">
       {data.map((elem: { dayOfWeek: string; majorityWeatherType : string; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
-        <div className="flex mb-[60px] p-[20px]" key={index}>
+        <div className="flex" key={index}>
           <div className="w-1/3">
-
+            {elem.majorityWeatherType == 'snow' && <SnowflakeIcon/>}
                 {elem.majorityWeatherType == 'clouds' && <Cloud/>}
                 {elem.majorityWeatherType == 'rain' && <CloudRain />}
                 {elem.majorityWeatherType == 'clear' && <Sun />}
@@ -98,12 +98,12 @@ export default function WeatherForecast({ temperature }: props) {
 
           </div>
           <div className="w-1/3 content-center">
-              <p className='text-3xl text-gray-800'>{elem.dayOfWeek}</p>
+              <p className='text-3xl text-white'>{elem.dayOfWeek}</p>
           </div>
 
           <div className="w-1/3 text-right content-center">
-            <p className="text-2xl text-red-600">{elem.tempRange.highestTemp}</p>
-            <p className="text-blue-600">{elem.tempRange.lowestTemp}</p>
+            <p className="text-2xl text-white">{elem.tempRange.highestTemp}</p>
+            <p className="text-white">{elem.tempRange.lowestTemp}</p>
           </div>
         </div>
       ))}
