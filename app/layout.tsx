@@ -10,7 +10,7 @@ const roboto = Roboto({
   display: 'swap',
 })
 
-export const metadata = {
+export const metadata:Metadata = {
   title: `jabercrombia`,
   description: `This is a weather app built with NextJS`,
   keywords: ['Next.js', 'React', 'JavaScript'],
