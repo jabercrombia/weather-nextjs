@@ -50,8 +50,8 @@ function reformatObj(temperature: any) {
             return mostFrequent;
         };
         // we are gathering highest and lowest temp for each day AND getting weathertype
-        for (let day in arrObj) {
-            let data = arrObj[day];
+        for (const day in arrObj) {
+            const data = arrObj[day];
             
             let lowestTemp = Math.min(...data.temps);
             let highestTemp = Math.max(...data.temps);
