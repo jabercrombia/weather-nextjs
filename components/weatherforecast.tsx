@@ -3,11 +3,6 @@
 
 import { Cloud, CloudRain, Sun, SnowflakeIcon } from 'lucide-react';
 
-
-interface props {
-  temperature: any;
-}
-
 function reformatObj(temperature: any) {
     let groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: number[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: any, index : number) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
