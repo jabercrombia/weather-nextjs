@@ -75,7 +75,20 @@ function reformatObj(temperature: any) {
     }
 
 
-export default function WeatherForecast({ temperature }: props) {
+interface Props {
+  temperature: {
+    data: {
+      majorityWeatherType : string,
+      dayOfWeek : string,
+      tempRange: {
+        lowestTemp : number,
+        highestTemp : number
+      }
+    }
+  };
+}
+
+export default function WeatherForecast({ temperature }: Props) {
   console.log('weatherforecast');
     let data = reformatObj(temperature)
   console.log(reformatObj(temperature));
