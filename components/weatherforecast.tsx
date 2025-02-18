@@ -3,7 +3,7 @@
 
 import { Cloud, CloudRain, Sun, SnowflakeIcon } from 'lucide-react';
 
-function reformatObj(temperature: any) {
+function reformatObj(temperature: string[]) {
     let groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: number[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: any, index : number) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
