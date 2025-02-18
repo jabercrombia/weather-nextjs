@@ -6,14 +6,23 @@ interface Props {
         name: string;
         sunrise: string;
         sunset: string;
-        weather?: string;
+        weather?: {
+            main: string;
+            description: string;
+            icon: string;
+        }[];
         main: {
             temp: number;
+            feels_like: number;
+            temp_min: number;
+            temp_max: number;
+            pressure: number;
+            humidity: number;
         };
     };
 }
 
-const Location: React.FC<Props> = ({ data}) => {
+const Location: React.FC<Props> = ({ data }) => {
     console.log(data);
   return (
     <div className='mx-auto text-center todayforecast w-1/2 shadow-md text-white'>
@@ -25,17 +34,14 @@ const Location: React.FC<Props> = ({ data}) => {
                 <p><Sunset/>  {data.sunset}</p>
             </div>
             <div className='todayicon justify-items-center'>
-                {data?.weather == 'clouds' && <Cloud strokeWidth={1}/>}
-                {data?.weather == 'rain' && <CloudRain strokeWidth={1}/>}
-                {data?.weather == 'clear' && <Sun strokeWidth={1}/>}
-                {data?.weather == 'mist' && <CloudFog strokeWidth={1}/>}
-                {data?.weather == 'snow' && <SnowflakeIcon strokeWidth={1} />}
-                <p className="uppercase">{data?.weather}</p>
+                {data?.weather?.[0]?.main == 'clouds' && <Cloud strokeWidth={1}/>}
+                {data?.weather?.[0]?.main == 'rain' && <CloudRain strokeWidth={1}/>}
+                {data?.weather?.[0]?.main == 'clear' && <Sun strokeWidth={1}/>}
+                {data?.weather?.[0]?.main == 'mist' && <CloudFog strokeWidth={1}/>}
+                {data?.weather?.[0]?.main == 'snow' && <SnowflakeIcon strokeWidth={1} />}
+                <p className="uppercase">{data?.weather?.[0]?.main}</p>
             </div>
         </div>
-
-  
-
     </div>
   );
 };

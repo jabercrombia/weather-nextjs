@@ -32,9 +32,7 @@ function reformatObj(temperature: TemperatureData[]) {
         acc[dayOfWeek].temps.push(curr.main.temp); 
         acc[dayOfWeek].time.push(curr.dt_txt.split(' ')[1]); 
         acc[dayOfWeek].weathertype.push(curr.weather[0].main); 
-        acc[dayOfWeek].windspeed.push(curr.wind.speed); 
-        
-        
+        acc[dayOfWeek].windspeed.push(curr.wind.speed);
       
         return acc;
       }, {});
@@ -123,8 +121,6 @@ export default function WeatherForecast({ temperature }: Props) {
             {elem.majorityWeatherType === 'rain' && <CloudRain strokeWidth={1} />}
             {elem.majorityWeatherType === 'clear' && <Sun strokeWidth={1} />}
         
-           
-
           </div>
           <div className="w-1/3 content-center">
               <p className='text-3xl text-white'>{elem.dayOfWeek}</p>
