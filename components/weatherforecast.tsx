@@ -3,15 +3,8 @@
 
 import { Cloud, CloudRain, Sun, SnowflakeIcon } from 'lucide-react';
 
-interface TemperatureData {
-    dt_txt: string;
-    main: { temp: number };
-    weather: { main: string }[];
-    wind: { speed: number };
-}
-
-function reformatObj(temperature: TemperatureData[]) {
-    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: TemperatureData, index: number) => {
+function reformatObj(temperature: any) {
+    let groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: number[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: any, index : number) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
       
@@ -33,12 +26,12 @@ function reformatObj(temperature: TemperatureData[]) {
       }, {});
 
       //remove day of week key in array
-      let groupByDayOfWeekArray = Object.values(groupByDayOfWeek);
+      groupByDayOfWeek = Object.values(groupByDayOfWeek);
       // now we sort specific keys in the object
-      return updateWeatherObj(groupByDayOfWeekArray);
+      return updateWeatherObj(groupByDayOfWeek);
   }
 
-    function updateWeatherObj(arrObj: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string }[]) {
+    function updateWeatherObj(arrObj : any) {
 
         const mostCommonString = (arr: string[]) => {
             let frequencyMap: { [key: string]: number } = {};
