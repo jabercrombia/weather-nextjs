@@ -3,8 +3,15 @@
 
 import { Cloud, CloudRain, Sun, SnowflakeIcon } from 'lucide-react';
 
-function reformatObj(temperature : string[]) {
-    let groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: any, index : number) => {
+interface TemperatureData {
+    dt_txt: string;
+    main: { temp: number };
+    weather: { main: string }[];
+    wind: { speed: number };
+}
+
+function reformatObj(temperature: TemperatureData[]) {
+    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr: TemperatureData, index: number) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
       
@@ -31,7 +38,7 @@ function reformatObj(temperature : string[]) {
       return updateWeatherObj(groupByDayOfWeekArray);
   }
 
-    function updateWeatherObj(arrObj : any) {
+    function updateWeatherObj(arrObj: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string }[]) {
 
         const mostCommonString = (arr: string[]) => {
             let frequencyMap: { [key: string]: number } = {};
