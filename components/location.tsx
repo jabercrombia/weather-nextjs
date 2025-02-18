@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, CloudRain, Sun, Sunrise, Sunset } from 'lucide-react';
+import { Cloud, CloudRain, Sun, Sunrise, Sunset, CloudFog, SnowflakeIcon } from 'lucide-react';
 
 interface Props {
     data: {
@@ -25,9 +25,12 @@ const Location: React.FC<Props> = ({ data}) => {
                 <p><Sunset/>  {data.sunset}</p>
             </div>
             <div className='todayicon justify-items-center'>
-                {data?.weather == 'clouds' && <Cloud/>}
-                {data?.weather == 'rain' && <CloudRain />}
-                {data?.weather == 'clear' && <Sun />}
+                {data?.weather == 'clouds' && <Cloud strokeWidth={1}/>}
+                {data?.weather == 'rain' && <CloudRain strokeWidth={1}/>}
+                {data?.weather == 'clear' && <Sun strokeWidth={1}/>}
+                {data?.weather == 'mist' && <CloudFog strokeWidth={1}/>}
+                {data?.weather == 'snow' && <SnowflakeIcon strokeWidth={1} />}
+                <p className="uppercase">{data?.weather}</p>
             </div>
         </div>
 

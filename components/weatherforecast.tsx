@@ -89,16 +89,7 @@ function reformatObj(temperature: TemperatureData[]) {
 
 
 interface Props {
-  temperature: {
-    data: {
-      majorityWeatherType : string,
-      dayOfWeek : string,
-      tempRange: {
-        lowestTemp : number,
-        highestTemp : number
-      }
-    }
-  };
+  temperature: TemperatureData[];
 }
 
 export default function WeatherForecast({ temperature }: Props) {
@@ -110,10 +101,11 @@ export default function WeatherForecast({ temperature }: Props) {
       {data.map((elem: { dayOfWeek: string; majorityWeatherType : string; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
         <div className="flex" key={index}>
           <div className="w-1/3">
-            {elem.majorityWeatherType == 'snow' && <SnowflakeIcon/>}
-                {elem.majorityWeatherType == 'clouds' && <Cloud/>}
-                {elem.majorityWeatherType == 'rain' && <CloudRain />}
-                {elem.majorityWeatherType == 'clear' && <Sun />}
+          
+            {elem.majorityWeatherType == 'snow' && <SnowflakeIcon strokeWidth={1}/>}
+            {elem.majorityWeatherType == 'clouds' && <Cloud strokeWidth={1}/>}
+            {elem.majorityWeatherType == 'rain' && <CloudRain strokeWidth={1} />}
+            {elem.majorityWeatherType == 'clear' && <Sun strokeWidth={1} />}
         
            
 

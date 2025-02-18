@@ -93,6 +93,7 @@ export default function Home() {
     <div className="w-3/4 mx-auto">
       <div className="form-conatiner text-center">
         <h1 className="text-7xl text-white pb-[20px]">Weather Forecast</h1>
+        <p>Enter the name of a US City</p>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
