@@ -17,7 +17,7 @@ interface TemperatureData {
 }
 
 function reformatObj(temperature: TemperatureData[]) {
-    let groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr : TemperatureData) => {
+    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr : TemperatureData) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
       
@@ -39,7 +39,7 @@ function reformatObj(temperature: TemperatureData[]) {
       }, {});
 
       //remove day of week key in array
-      let groupedArray = Object.values(groupByDayOfWeek);
+      const groupedArray = Object.values(groupByDayOfWeek);
       // now we sort specific keys in the object
       return updateWeatherObj(groupedArray);
   }
@@ -47,11 +47,11 @@ function reformatObj(temperature: TemperatureData[]) {
     function updateWeatherObj(arrObj : any) {
 
         const mostCommonString = (arr: string[]) => {
-            let frequencyMap: { [key: string]: number } = {};
+            const frequencyMap: { [key: string]: number } = {};
             let maxCount = 0;
             let mostFrequent = null;
         
-            for (let str of arr) {
+            for (const str of arr) {
                 frequencyMap[str] = (frequencyMap[str] || 0) + 1;
         
                 if (frequencyMap[str] > maxCount) {
@@ -94,7 +94,7 @@ interface Props {
 
 export default function WeatherForecast({ temperature }: Props) {
   console.log('weatherforecast');
-    let data = reformatObj(temperature)
+    const data = reformatObj(temperature)
   console.log(reformatObj(temperature));
   return (
     <div className="grid grid-cols w-1/2 mx-auto weatherforecast drop-shadow-md">
