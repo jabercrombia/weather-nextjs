@@ -20,6 +20,7 @@ export default function Home() {
         humidity: number;
       };
       weather: {
+        main: string;
         description: string;
         icon: string;
       }[];
@@ -30,7 +31,16 @@ export default function Home() {
         temp: number;
         // Add other properties as needed
       };
-      // Add other properties as needed
+      dt_txt: string;
+      weather: {
+        main: string;
+        description: string;
+        icon: string;
+      }[];
+      wind: {
+        speed: number;
+        deg: number;
+      };
     }>;
     
     

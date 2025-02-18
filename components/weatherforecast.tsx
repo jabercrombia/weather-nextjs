@@ -14,17 +14,18 @@ interface TemperatureData {
   wind: {
     speed: number;
   };
-}
+};
+
 
 function reformatObj(temperature: TemperatureData[]) {
-    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string } }, curr : TemperatureData) => {
+    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string; tempRange: { lowestTemp: number; highestTemp: number }; majorityWeatherType: string | null } }, curr : TemperatureData) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
       
         // If the day of the week doesn't exist in the accumulator, add it
         if (!acc[dayOfWeek]) {
            
-            acc[dayOfWeek] = { temps: [], time: [], weathertype: [], windspeed:[], dayOfWeek, };
+            acc[dayOfWeek] = { temps: [], time: [], weathertype: [], windspeed:[], dayOfWeek, tempRange: { lowestTemp: 0, highestTemp: 0 }, majorityWeatherType: null };
         }
         
         // Push the current object into the corresponding day of week
@@ -52,11 +53,11 @@ function reformatObj(temperature: TemperatureData[]) {
       weathertype: string[];
       windspeed: number[];
       dayOfWeek: string;
-      tempRange?: {
+      tempRange: {
         lowestTemp: number;
         highestTemp: number;
       };
-      majorityWeatherType?: string | null;
+      majorityWeatherType: string | null;
     }
     
     function updateWeatherObj(arrObj: GroupedData[]) {
@@ -95,7 +96,7 @@ function reformatObj(temperature: TemperatureData[]) {
             };
 
             // returns the most common weathertype in the array weathertype
-            data.majorityWeatherType = mostCommonString(data.weathertype)?.toLowerCase();
+            data.majorityWeatherType = mostCommonString(data.weathertype)?.toLowerCase() ?? null;
             
         }
 
@@ -103,9 +104,9 @@ function reformatObj(temperature: TemperatureData[]) {
     }
 
 
-interface Props {
-  temperature: TemperatureData[];
-}
+  interface Props {
+    temperature: TemperatureData[];
+  }
 
 export default function WeatherForecast({ temperature }: Props) {
   console.log('weatherforecast');
@@ -113,14 +114,14 @@ export default function WeatherForecast({ temperature }: Props) {
   console.log(reformatObj(temperature));
   return (
     <div className="grid grid-cols w-1/2 mx-auto weatherforecast drop-shadow-md">
-      {data.map((elem: { dayOfWeek: string; majorityWeatherType : string; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
+      {data.map((elem: { dayOfWeek: string; majorityWeatherType : string | null | undefined; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
         <div className="flex" key={index}>
           <div className="w-1/3">
           
-            {elem.majorityWeatherType == 'snow' && <SnowflakeIcon strokeWidth={1}/>}
-            {elem.majorityWeatherType == 'clouds' && <Cloud strokeWidth={1}/>}
-            {elem.majorityWeatherType == 'rain' && <CloudRain strokeWidth={1} />}
-            {elem.majorityWeatherType == 'clear' && <Sun strokeWidth={1} />}
+            {elem.majorityWeatherType === 'snow' && <SnowflakeIcon strokeWidth={1}/>}
+            {elem.majorityWeatherType === 'clouds' && <Cloud strokeWidth={1}/>}
+            {elem.majorityWeatherType === 'rain' && <CloudRain strokeWidth={1} />}
+            {elem.majorityWeatherType === 'clear' && <Sun strokeWidth={1} />}
         
            
 
