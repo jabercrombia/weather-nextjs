@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 import "./globals.css";
 import { Roboto } from 'next/font/google'
@@ -11,7 +12,7 @@ const roboto = Roboto({
 })
 
 export const metadata:Metadata = {
-  title: `jabercrombia`,
+  title: `Weather NextJs App`,
   description: `This is a weather app built with NextJS`,
   keywords: ['Next.js', 'React', 'JavaScript'],
   authors: [{ name: 'Justin Abercrombia', url: 'http://www.github.com/jabercrombia' }],
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         {children}
       </body>
+      <GoogleAnalytics gaId="G-2B542KX6WR" />
     </html>
   );
 }
