@@ -41,10 +41,25 @@ function reformatObj(temperature: TemperatureData[]) {
       //remove day of week key in array
       const groupedArray = Object.values(groupByDayOfWeek);
       // now we sort specific keys in the object
+      console.log('grouped array');
+      console.log(groupedArray);
       return updateWeatherObj(groupedArray);
   }
 
-    function updateWeatherObj(arrObj : any) {
+    interface GroupedData {
+      temps: number[];
+      time: string[];
+      weathertype: string[];
+      windspeed: number[];
+      dayOfWeek: string;
+      tempRange?: {
+        lowestTemp: number;
+        highestTemp: number;
+      };
+      majorityWeatherType?: string | null;
+    }
+    
+    function updateWeatherObj(arrObj: GroupedData[]) {
 
         const mostCommonString = (arr: string[]) => {
             const frequencyMap: { [key: string]: number } = {};
