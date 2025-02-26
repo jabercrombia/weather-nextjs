@@ -12,7 +12,8 @@ const roboto = Roboto({
 })
 const backgroundImage = {
   backgroundImage: 'url(./images/background.jpeg)',
-  backgroundSize: 'cover'
+  backgroundAttachment: 'fixed', 
+  backgroundSize: '100% 100%'
 };
 export const metadata:Metadata = {
   title: `Weather NextJs App`,
