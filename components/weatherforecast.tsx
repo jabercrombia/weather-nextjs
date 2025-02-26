@@ -107,9 +107,7 @@ function reformatObj(temperature: TemperatureData[]) {
   }
 
 export default function WeatherForecast({ temperature }: Props) {
-  console.log('weatherforecast');
     const data = reformatObj(temperature)
-  console.log(reformatObj(temperature));
   return (
     <div className="grid grid-cols w-1/2 mx-auto weatherforecast drop-shadow-md">
       {data.map((elem: { dayOfWeek: string; majorityWeatherType : string | null | undefined; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
@@ -127,8 +125,8 @@ export default function WeatherForecast({ temperature }: Props) {
           </div>
 
           <div className="w-1/3 text-right content-center">
-            <p className="text-2xl text-white">{elem.tempRange.highestTemp}</p>
-            <p className="text-white">{elem.tempRange.lowestTemp}</p>
+            <p className="text-2xl text-white">H: {elem.tempRange.highestTemp}</p>
+            <p className="text-white">L: {elem.tempRange.lowestTemp}</p>
           </div>
         </div>
       ))}

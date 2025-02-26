@@ -10,7 +10,10 @@ const roboto = Roboto({
   subsets: ['latin'],
   display: 'swap',
 })
-
+const backgroundImage = {
+  backgroundImage: 'url(./images/background.jpeg)',
+  backgroundSize: 'cover'
+};
 export const metadata:Metadata = {
   title: `Weather NextJs App`,
   description: `This is a weather app built with NextJS`,
@@ -29,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={roboto.className} style={backgroundImage}>
         {children}
       </body>
       <GoogleAnalytics gaId="G-2B542KX6WR" />
