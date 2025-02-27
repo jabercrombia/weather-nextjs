@@ -24,12 +24,12 @@ export const metadata:Metadata = {
     siteName: 'Weather Forecast App',
     images: [
       {
-        url: '/results.png', // Must be an absolute URL
+        url: '/images/results.png', // Must be an absolute URL
         width: 800,
         height: 600,
       },
       {
-        url: '/results.png', // Must be an absolute URL
+        url: '/images/results.png', // Must be an absolute URL
         width: 1800,
         height: 1600,
         alt: 'results page',
