@@ -11,7 +11,9 @@ interface Props {
             description: string;
             icon: string;
         };
-        wind: number;
+        wind: {
+            speed: number;
+        };
         main: {
             temp: number;
             feels_like: number;
