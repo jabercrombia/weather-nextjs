@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Location from "../components/location";
 import WeatherForecast from "@/components/weatherforecast";
-import 'dotenv/config';
+
 export default function Home() {
   const [input, setInput] = useState("");
   interface WeatherData {
@@ -32,7 +32,6 @@ export default function Home() {
       dt: number;
       main: {
         temp: number;
-        // Add other properties as needed
       };
       dt_txt: string;
       weather: {
@@ -96,8 +95,8 @@ export default function Home() {
   return (
     <div className="w-3/4 mx-auto">
       <div className="form-conatiner text-center">
-        <h1 className="text-7xl text-white pb-[20px]">Weather Forecast</h1>
-        <p className="text-white">Enter the name of a US City</p>
+        <h1 className="text-7xl  pb-[20px]">Weather Forecast</h1>
+        <p className="">Enter the name of a US City</p>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -106,7 +105,7 @@ export default function Home() {
             placeholder="Enter US City..."
             required
           />
-          <button type="submit" className="bg-cyan-600 p-[5px]">{loading ? <p>Loading...</p> : <p>Submit</p>}</button>
+          <button type="submit" className="bg-gray-600 p-[5px]">{loading ? <p>Loading...</p> : <p>Submit</p>}</button>
         </form>
 
       {error && <p style={{ color: "red" }}>{error}</p>}

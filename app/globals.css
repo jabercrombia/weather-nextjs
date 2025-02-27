@@ -36,15 +36,16 @@ body {
   margin-top: 70px;
 
   & > div {
-    background: linear-gradient(45deg,#a2dff5, rgb(176, 200, 208, 0.4));
+    background: white;
     border-radius: 20px;
     padding: 20px;
     margin-bottom: 20px;
   }
   svg {
-    width: 100px;
-    height: 100px;
-    stroke: #fff;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    stroke: black;
   }
 }
 

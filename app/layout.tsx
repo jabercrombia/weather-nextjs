@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { GoogleAnalytics } from '@next/third-parties/google';
-
+import 'dotenv/config';
 import "./globals.css";
 import { Roboto } from 'next/font/google'
 
@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={roboto.className}>
         {children}
       </body>
-      <GoogleAnalytics gaId="G-2B542KX6WR" />
+      <GoogleAnalytics gaId={`${process.env.NEXT_PUBLIC_GA4}`} />
     </html>
   );
 }

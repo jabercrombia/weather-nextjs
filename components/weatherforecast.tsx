@@ -20,7 +20,7 @@ interface TemperatureData {
 function reformatObj(temperature: TemperatureData[]) {
     const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string; tempRange: { lowestTemp: number; highestTemp: number }; majorityWeatherType: string | null } }, curr : TemperatureData) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
-        const dayOfWeek = date.toLocaleString('en-us', { weekday: 'long' }); // Get the day of the week (e.g., "Thursday")
+        const dayOfWeek = date.toLocaleString('en-us', { weekday: 'short' }); // Get the day of the week (e.g., "Thursday")
       
         // If the day of the week doesn't exist in the accumulator, add it
         if (!acc[dayOfWeek]) {
@@ -109,24 +109,23 @@ function reformatObj(temperature: TemperatureData[]) {
 export default function WeatherForecast({ temperature }: Props) {
     const data = reformatObj(temperature)
   return (
-    <div className="grid grid-cols w-1/2 mx-auto weatherforecast drop-shadow-md">
+    <div className="grid md:grid-cols-2 gap-4 container mx-auto weatherforecast drop-shadow-md">
       {data.map((elem: { dayOfWeek: string; majorityWeatherType : string | null | undefined; tempRange: { lowestTemp: number; highestTemp: number } }, index : number) => (
         <div className="flex" key={index}>
-          <div className="w-1/3">
-          
-            {elem.majorityWeatherType === 'snow' && <SnowflakeIcon strokeWidth={1}/>}
-            {elem.majorityWeatherType === 'clouds' && <Cloud strokeWidth={1}/>}
-            {elem.majorityWeatherType === 'rain' && <CloudRain strokeWidth={1} />}
-            {elem.majorityWeatherType === 'clear' && <Sun strokeWidth={1} />}
-        
-          </div>
           <div className="w-1/3 content-center">
-              <p className='text-3xl text-white'>{elem.dayOfWeek}</p>
+              <p className='text-2xl text-black'>{elem.dayOfWeek}</p>
           </div>
+          <div className="w-1/3">
+            {elem.majorityWeatherType === 'snow' && <SnowflakeIcon/>}
+            {elem.majorityWeatherType === 'clouds' && <Cloud/>}
+            {elem.majorityWeatherType === 'rain' && <CloudRain />}
+            {elem.majorityWeatherType === 'clear' && <Sun />}
+          </div>
+          
 
           <div className="w-1/3 text-right content-center">
-            <p className="text-2xl text-white">H: {elem.tempRange.highestTemp}</p>
-            <p className="text-white">L: {elem.tempRange.lowestTemp}</p>
+            <p className="md:text-2xl text-black inline-block mr-[10px]">{elem.tempRange.highestTemp}&deg;</p>
+            <p className="md:text-2xl text-color-[grey] inline-block">{elem.tempRange.lowestTemp}&deg;</p>
           </div>
         </div>
       ))}
