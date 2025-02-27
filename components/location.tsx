@@ -10,7 +10,7 @@ interface Props {
             main: string;
             description: string;
             icon: string;
-        }[];
+        };
         wind: {
             speed: number;
         };
