@@ -18,29 +18,27 @@ interface TemperatureData {
 
 
 function reformatObj(temperature: TemperatureData[]) {
-    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; windspeed: number[]; dayOfWeek: string; tempRange: { lowestTemp: number; highestTemp: number }; majorityWeatherType: string | null } }, curr : TemperatureData) => {
+    const groupByDayOfWeek = temperature.reduce((acc: { [key: string]: { temps: number[]; time: string[]; weathertype: string[]; dayOfWeek: string; tempRange: { lowestTemp: number; highestTemp: number }; majorityWeatherType: string | null } }, curr : TemperatureData) => {
         const date = new Date(curr.dt_txt); // Create a date object from dt_txt
         const dayOfWeek = date.toLocaleString('en-us', { weekday: 'short' }); // Get the day of the week (e.g., "Thursday")
       
         // If the day of the week doesn't exist in the accumulator, add it
         if (!acc[dayOfWeek]) {
            
-            acc[dayOfWeek] = { temps: [], time: [], weathertype: [], windspeed:[], dayOfWeek, tempRange: { lowestTemp: 0, highestTemp: 0 }, majorityWeatherType: null };
+            acc[dayOfWeek] = { temps: [], time: [], weathertype: [], dayOfWeek, tempRange: { lowestTemp: 0, highestTemp: 0 }, majorityWeatherType: null };
         }
         
         // Push the current object into the corresponding day of week
         acc[dayOfWeek].temps.push(curr.main.temp); 
         acc[dayOfWeek].time.push(curr.dt_txt.split(' ')[1]); 
         acc[dayOfWeek].weathertype.push(curr.weather[0].main); 
-        acc[dayOfWeek].windspeed.push(curr.wind.speed);
       
         return acc;
       }, {});
 
       //remove day of week key in array
       const groupedArray = Object.values(groupByDayOfWeek);
-      // now we sort specific keys in the object
-      console.log('grouped array');
+
       console.log(groupedArray);
       return updateWeatherObj(groupedArray);
   }
@@ -49,7 +47,6 @@ function reformatObj(temperature: TemperatureData[]) {
       temps: number[];
       time: string[];
       weathertype: string[];
-      windspeed: number[];
       dayOfWeek: string;
       tempRange: {
         lowestTemp: number;
