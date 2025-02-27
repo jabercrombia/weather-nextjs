@@ -19,6 +19,9 @@ export default function Home() {
         pressure: number;
         humidity: number;
       };
+      wind: {
+        speed: number;
+      }
       weather: {
         main: string;
         description: string;
@@ -73,25 +76,16 @@ export default function Home() {
           sunrise: new Date(data2.sys.sunrise * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
           sunset: new Date(data2.sys.sunset * 1000).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }),
           main: data2.main,
-          weather: data2.weather[0].main.toLowerCase(),
+          weather: data2.weather[0],
+          wind: data2.wind.speed,
         },
         list: data1.list,
         
         
       });
 
+      console.log(data);
 
-      console.log(data);
-      //console.log(data2);
-      //return { data1, data2 };
-      //const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?zip=${input}&units=${units}&appid=${apiKey}`);
-      //if (data1) throw new Error("Failed to fetch data");
-      
-      console.log('data');
-      console.log(data);
-      // const result = await data1.json();
-      // console.log(result);
-      // setData([data1,data2]); // This line is incorrect and should be removed
     } catch (err) {
       setError((err as Error).message);
     }

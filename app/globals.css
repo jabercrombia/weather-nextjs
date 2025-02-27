@@ -9,8 +9,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #8b8b8b;
+    --background: #eeeeeeef;
+    --foreground: #8b8b8bee;
   }
 }
 
@@ -51,16 +51,17 @@ body {
 .todayforecast {
   border-radius: 20px;
   padding: 20px;
-  background: linear-gradient(45deg,#a2dff5, rgb(176, 200, 208));
-  .card-left {
+  background-color: white;
+  color:black;
+  .card-left,.card-right {
     svg {
       display: inline-block;
     }
   }
-  .todayicon {
+  .todaybottomdata > div {
+    display: inline-flex;
     svg {
-      width: 150px;
-      height: 150px;
+      margin-right: 10px;
     }
   }
 
