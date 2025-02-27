@@ -26,7 +26,7 @@ export default function Home() {
         main: string;
         description: string;
         icon: string;
-      }[];
+      };
     };
     list: Array<{
       dt: number;
