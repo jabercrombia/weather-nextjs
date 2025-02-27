@@ -11,9 +11,6 @@ interface TemperatureData {
   weather: {
     main: string;
   }[];
-  wind: {
-    speed: number;
-  };
 };
 
 
