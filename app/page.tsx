@@ -39,10 +39,6 @@ export default function Home() {
         description: string;
         icon: string;
       }[];
-      wind: {
-        speed: number;
-        deg: number;
-      };
     }>;
     
     
