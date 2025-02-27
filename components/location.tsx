@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cloud, CloudRain, Sun, Sunrise, Sunset, CloudFog, SnowflakeIcon, Droplets, Wind } from 'lucide-react';
+import { Sunrise, Sunset, Droplets, Wind } from 'lucide-react';
 
 interface Props {
     data: {
