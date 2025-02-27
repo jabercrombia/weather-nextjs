@@ -18,8 +18,26 @@ export const metadata:Metadata = {
   authors: [{ name: 'Justin Abercrombia', url: 'http://www.github.com/jabercrombia' }],
   creator: 'Justin Abercrombia',
   openGraph: {
-    images: '/favicon.png',
-  },
+    title: 'Weather Forecast App',
+    description: 'Get accurate, real-time weather forecasts with WeatherWise. Built using Next.js and TypeScript, and deployed on Vercel for lightning-fast performance',
+    url: 'https://weather-nextjs-zeta.vercel.app/',
+    siteName: 'Weather Forecast App',
+    images: [
+      {
+        url: '/results.png', // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+      {
+        url: '/results.png', // Must be an absolute URL
+        width: 1800,
+        height: 1600,
+        alt: 'results page',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  }
 };
 
 export default function RootLayout({
