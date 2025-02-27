@@ -19,9 +19,7 @@ export default function Home() {
         pressure: number;
         humidity: number;
       };
-      wind: {
-        speed: number;
-      }
+      wind: number;
       weather: {
         main: string;
         description: string;
